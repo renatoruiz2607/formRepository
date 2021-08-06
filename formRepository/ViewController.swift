@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Foundation
 
 class ViewController: UIViewController {
     
@@ -16,9 +17,24 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        setup()
     }
 
+    func setup() {
+        phoneTextField.delegate = self
+    }
+}
 
+extension ViewController: UITextFieldDelegate {
+    func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
+        if let phone = phoneTextField.text {
+            if CharacterSet.decimalDigits.isSuperset(of: CharacterSet(charactersIn: phone)) && phone.count == 11{
+                phoneTextField.backgroundColor = UIColor.green
+            } else {
+                phoneTextField.backgroundColor = UIColor.clear
+            }
+        }
+        return true
+    }
 }
 
