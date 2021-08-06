@@ -28,10 +28,12 @@ class ViewController: UIViewController {
 extension ViewController: UITextFieldDelegate {
     func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
         if let phone = phoneTextField.text {
-            if CharacterSet.decimalDigits.isSuperset(of: CharacterSet(charactersIn: phone)) && phone.count == 11{
-                phoneTextField.backgroundColor = UIColor.green
-            } else {
+            if CharacterSet.decimalDigits.isSuperset(of: CharacterSet(charactersIn: phone)) && phone.count == 11 {
+                phoneTextField.backgroundColor = UIColor.systemGreen
+            } else if phone == "" {
                 phoneTextField.backgroundColor = UIColor.clear
+            } else {
+                phoneTextField.backgroundColor = UIColor.systemRed
             }
         }
         return true
